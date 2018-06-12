@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateCollectionCenterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_master', function (Blueprint $table) {
-            $table->string('id',12)->unique();
-            $table->string('password');
-            $table->string('name');
-            $table->string('email');
+        Schema::create('collectionCenter_master', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('provinceId')->references('id')->on('province_master');
             $table->string('address');
-            $table->string('telephone');
+            $table->string('description');
             $table->enum('status',['Activo','Inactivo']);
-            $table->enum('role',['Administrador','Centro Recoleccion','Cliente'])->default('Cliente');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('collection_center');
     }
 }
