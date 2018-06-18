@@ -1,0 +1,8 @@
+When creating a new seeder:
+    composer dump-autoload
+
+To refresh database including seeds:
+    php artisan migrate:fresh --seed
+
+To deploy on new machine:
+    composer install

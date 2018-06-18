@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('site/index');
 });
 
-Route::get('/app', function () {
+/*Route::get('/plantillaapp', function () {
     return view('app/index');
+});*/
+
+Route::group(['prefix'=>'app'],function(){
+
+  Route::get('/login', function () {
+      return view('app/security/login');
+  });
+
+  Route::resource('users','UsersController');
+
 });

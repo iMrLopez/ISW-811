@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
 <head>
@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('app/img/apple-icon.png')}}">
   <link rel="icon" type="image/png" href="{{asset('app/img/favicon.png')}}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Ecolones - @yield('title')</title>
+  <title>@yield("title",'') - Ecolones</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -17,53 +17,21 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('app/css/demo.css')}}" rel="stylesheet" />
 </head>
+
 <body>
-  <div class="wrapper wrapper-full-page">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
-      <div class="container">
-        <div class="navbar-wrapper">
-          <a class="navbar-brand" href="#pablo">Ecolones</a>
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar burger-lines"></span>
-            <span class="navbar-toggler-bar burger-lines"></span>
-            <span class="navbar-toggler-bar burger-lines"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a href="../dashboard.html" class="nav-link">
-                <i class="nc-icon nc-chart-pie-35"></i> Inicio
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a href="register.html" class="nav-link">
-                <i class="nc-icon nc-badge"></i> Registrarse
-              </a>
-            </li>
-            <li class="nav-item  active ">
-              <a href="login.html" class="nav-link">
-                <i class="nc-icon nc-mobile"></i> Inicio de Sesion
-              </a>
-            </li>
-          </ul>
+  <div class="wrapper">
+    @include('app.menu.admin')
+    <div class="main-panel">
+      @include('app.menu.navbar')
+      <div class="content">
+        <div class="container-fluid">
+          @yield('content','No content to show')
         </div>
       </div>
-    </nav>
-    <!-- End Navbar -->
-    @yield('content')}};
-    <footer class="footer">
-      <div class="container">
-        <nav>
-          <p class="copyright text-center"> © <script>document.write(new Date().getFullYear())</script><a href="#">MLopez</a>, hecho por una web mas cool
-          </p>
-        </nav>
-      </div>
-    </footer>
+      @include('app.menu.footer')
+    </div>
   </div>
 </body>
-@yield('scripts','');
 <!--   Core JS Files   -->
 <script src="{{asset('app/js/core/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('app/js/core/popper.min.js')}}" type="text/javascript"></script>
@@ -104,15 +72,16 @@
 <script src="{{asset('app/js/light-bootstrap-dashboard.js?v=2.0.1')}}" type="text/javascript"></script>
 <!-- Light Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('app/js/demo.js')}}"></script>
-<script>
-$(document).ready(function() {
-  demo.checkFullPageBackgroundImage();
+<script type="text/javascript">
+$(document)}}.ready(function()}} {
+  // Javascript method's body can be found in assets/js/demos.js
+  demo.initDashboardPageCharts()}};
 
-  setTimeout(function() {
-    // after 1000 ms we add the class animated to the login/register card
-    $('.card').removeClass('card-hidden');
-  }, 700)
-});
+  demo.showNotification()}};
+
+  demo.initVectorMap()}};
+
+})}};
 </script>
 
 </html>
