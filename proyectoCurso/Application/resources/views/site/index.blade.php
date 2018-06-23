@@ -32,14 +32,7 @@
             <li><a href="#proposito">Proposito</a></li>
             <li><a href="#marcas">Marcas</a></li>
             <li><a href="#contacto">Contacto</a></li>
-            <li><div class="text-align: right;"><button class="btn waves-effect waves-light red darken-1" type="submit">Ingresa en tu perfil</button></div></li>
-          </ul>
-          <ul id="nav-mobile" class="side-nav">
-            <li><a href="#intro">Service</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="https://github.com/joashp/material-design-template" target="_blank">Download</a></li>
+            <li><div class="text-align: right;"><a class="btn waves-effect waves-light red darken-1" href="{{ route('mainAppRoute') }}">Ingresa en tu perfil</a></div></li>
           </ul>
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         </div>

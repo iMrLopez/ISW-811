@@ -12,24 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('site/index');
-});
-
-/*Route::get('/plantillaapp', function () {
-    return view('app/index');
-});*/
-
-
-Route::redirect('/aplicacion', '/app/login', 301)->name('mainAppRoute');;
-
-
-
-Route::group(['prefix'=>'app'],function(){
-
-  Route::get('/login', function () {
-      return view('app/security/login');
-  });
-
-  Route::resource('users','UsersController');
-
+    return view('welcome');
 });
