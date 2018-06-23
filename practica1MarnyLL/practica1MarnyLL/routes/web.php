@@ -13,4 +13,15 @@
 
 Route::get('/', function () {
     return view('propiedad.index');
+})->name("LISTAPROPIEDADES");
+
+Route::get('/gestion',function(){
+    return view('admin.index');
+})->name('GESTIONPROPIEDADES');
+
+
+Route::prefix('propiedad')->group(function () {
+    Route::get('list', 'PropiedadController@index')->name("ListarPropiedad");
+    Route::get('create', 'PropiedadController@create')->name("CrearPropiedad");
+    Route::put('store', 'store')->name("StorePropiedad");
 });

@@ -22,9 +22,7 @@ class CreatePropiedadsTable extends Migration
             $table->tinyInteger('cantidadCarros');
             $table->integer('tipo_id')->unsigned();
             $table->timestamps();
-            $table->foreign('tipo_id')->
-            references('id')->
-            on('tipos')->onDelete('cascade');
+            $table->foreign('tipo_id')->references('id')->on('tipos')->onDelete('cascade');
         });
     }
 

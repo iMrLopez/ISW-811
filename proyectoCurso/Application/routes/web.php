@@ -26,6 +26,7 @@ Route::redirect('/aplicacion', '/app/login', 301)->name('mainAppRoute');;
 
 Route::group(['prefix'=>'app'],function(){
 
+
   Route::get('/login', function () {
       return view('app/security/login');
   });

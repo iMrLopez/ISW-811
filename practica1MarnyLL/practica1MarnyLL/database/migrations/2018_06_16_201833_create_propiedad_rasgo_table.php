@@ -18,12 +18,8 @@ class CreatePropiedadRasgoTable extends Migration
           $table->timestamps();
           $table->integer('propiedad_id')->unsigned();
           $table->integer('rasgo_id')->unsigned();
-          $table->foreign('propiedad_id')->
-          references('id')->
-          on('propiedads')->onDelete('cascade');
-          $table->foreign('rasgo_id')->
-          references('id')->
-          on('rasgos')->onDelete('cascade');
+          $table->foreign('propiedad_id')->references('id')->on('propiedads')->onDelete('cascade');
+          $table->foreign('rasgo_id')->references('id')->on('rasgos')->onDelete('cascade');
       });
   }
 
