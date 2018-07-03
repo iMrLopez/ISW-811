@@ -12,33 +12,33 @@ class UsersTableSeeder extends Seeder
       DB::table('user_master')->insert([
         'uname' => "admin",
         'password' => bcrypt("admin"),
-        'name' => "Administrador Principal",
+        'name' => "Administrador",
         'email' => "correo@admin.com",
         'address' => "Direccion xyz",
         'telephone' => "+5060000000",
         'status' => "Activo",
-        'role' => "Administrador",
+        'role' => "admin",
       ]);
       DB::table('user_master')->insert([
         'uname' => "admincentro",
         'password' => bcrypt("admincentro"),
-        'name' => "Administrador Centro Recoleccion",
+        'name' => "Centro 1",
         'email' => "correo@admin.com",
         'address' => "Direccion xyz",
         'telephone' => "+5060000000",
         'status' => "Activo",
-        'role' => "Centro Recoleccion",
+        'role' => "collection",
       ]);
       DB::table('user_master')->insert([
         'uname' => "cliente1",
         'password' => bcrypt("cliente1"),
-        'name' => "cliente1",
+        'name' => "Cliente 1",
         'email' => "correo@cliente1.com",
         'address' => "Direccion xyz",
         'telephone' => "+5060000000",
         'status' => "Activo",
-        'role' => "Cliente",
+        'role' => "client",
       ]);
-    
+
     }
 }

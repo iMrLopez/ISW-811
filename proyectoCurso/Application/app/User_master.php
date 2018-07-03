@@ -8,6 +8,6 @@ class User_master extends Model
 {
     //
     protected $table = "user_master";
-    protected $fillable = ['id','password','name','email','address','telephone','status','role'];
+    protected $fillable = ['uname','password','name','email','address','telephone','status','role'];
     protected $hidden = ['password','remember_token'];
 }

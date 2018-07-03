@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('telephone');
             $table->enum('status',['Activo','Inactivo']);
-            $table->enum('role',['Administrador','Centro Recoleccion','Cliente'])->default('Cliente');
+            $table->enum('role',['admin','collection','client'])->default('client');
             $table->rememberToken();
             $table->timestamps();
         });

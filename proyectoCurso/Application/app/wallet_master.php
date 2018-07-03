@@ -14,7 +14,4 @@ class wallet_master extends Model
       return $this->hasMany('App\wallet_detail');
     }
 
-
-
-
 }

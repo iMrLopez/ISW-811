@@ -19,6 +19,7 @@ class CreateCollectionCenterTable extends Migration
             $table->string('address');
             $table->string('description');
             $table->enum('status',['Activo','Inactivo']);
+            $table->unsignedInteger('mgmUserId')->references('id')->on('user_master');
             $table->timestamps();
         });
     }

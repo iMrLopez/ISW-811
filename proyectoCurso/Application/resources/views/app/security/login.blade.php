@@ -7,7 +7,7 @@
             <div class="content">
                 <div class="container">
                     <div class="col-md-4 col-sm-6 ml-auto mr-auto">
-                        <form class="form" method="" action="">
+                      {!! Form::open(['route' => 'security.doLogin','class'=>'form']) !!}
                             <div class="card card-login card-hidden">
                                 <div class="card-header ">
                                     <h3 class="header text-center">Inicio de Sesion</h3>
@@ -16,19 +16,19 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Numero de identificacion</label>
-                                            <input type="text" placeholder="Usuario" class="form-control" required>
+                                            {!! Form::text('username','',['class' => 'form-control','required','placeholder'=>"Tu usuario"]) !!}
                                         </div>
                                         <div class="form-group">
                                             <label>Contraseña</label>
-                                            <input type="password" placeholder="Password" class="form-control" required>
+                                            {!! Form::password('password',['class' => 'form-control','required','placeholder'=>"Tu contraseña"]) !!}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer ml-auto mr-auto">
-                                    <button type="submit" class="btn btn-warning btn-wd">Iniciar Sesion</button>
+                                  {!! Form::submit('Iniciar Sesion',['class'=>'btn btn-warning btn-wd']) !!}
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
