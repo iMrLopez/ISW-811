@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{id?}', 'PrincipalController@index')->name('helado.principal');
+Route::get('/votar/{id}/{voto}', 'PrincipalController@vote')->name('helado.votar');
+
+
+Route::get('/editar/{id}', 'PrincipalController@getEditar')->name('helado.editar');
+
+Route::post('/editar', 'PrincipalController@postUpdate')->name('helado.update');
