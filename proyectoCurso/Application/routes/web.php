@@ -28,6 +28,15 @@ Route::group(['prefix'=>'app'],function(){
   Route::get('/myProfile', function () {return view('app/dashboard/'.session()->get('user.type'));})->name('app.myProfile');
 
   Route::group(['prefix'=>'CRUD'],function(){
+
+    Route::group(['prefix'=>'CentroAcopio'],function(){
+      Route::get('/list','collCntrController@index')->name('CRUD.collCenter.index');
+      Route::get('/add','collCntrController@create')->name('CRUD.collCenter.create');
+      Route::post('/edit','collCntrController@edit')->name('CRUD.collCenter.edit');
+      Route::post('/store','collCntrController@store')->name('CRUD.collCenter.store');
+    });
+
+
     Route::get('/main', function () {return view('app/dashboard/'.session()->get('user.type'));})->name('CRUD.main');
   });
 
