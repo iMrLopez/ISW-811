@@ -16,10 +16,10 @@ class CreateCollectionCenterTable extends Migration
         Schema::create('collectionCenter_master', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('provinceId')->references('id')->on('province_master');
+            $table->unsignedInteger('province_master_id')->references('id')->on('province_master');
             $table->string('address');
             $table->enum('status',['Activo','Inactivo']);
-            $table->unsignedInteger('mgmUserId')->references('id')->on('user_master');
+            $table->unsignedInteger('user_master_id')->references('id')->on('user_master');
             $table->timestamps();
         });
     }

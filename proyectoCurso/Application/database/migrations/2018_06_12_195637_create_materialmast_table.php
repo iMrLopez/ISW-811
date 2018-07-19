@@ -16,7 +16,7 @@ class CreateMaterialmastTable extends Migration
         Schema::create('material_master', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name',60);
-          $table->binary('img');
+          $table->longText('img');
           $table->float('CRCValue',8,2);
           $table->enum('status',['Activo','Inactivo']);
           $table->string('HTMLColor');

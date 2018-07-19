@@ -48,6 +48,7 @@ class PrincipalController extends Controller
 
     $View_helado = helado::with('caracteristicas')->find($helado);
     $View_caracteristicas = caracteristica::all();
+    $View_users = caracteristica::all();
     return view('helado.edit',['helado'=>$View_helado,'caracteristicas'=>$View_caracteristicas]);
     //dd($helado);
   }

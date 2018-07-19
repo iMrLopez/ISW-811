@@ -36,6 +36,28 @@ Route::group(['prefix'=>'app'],function(){
       Route::post('/store','collCntrController@store')->name('CRUD.collCenter.store');
     });
 
+    Route::group(['prefix'=>'MaterialReciclable'],function(){
+      Route::get('/list','materialsController@index')->name('CRUD.MaterialReciclable.index');
+      Route::get('/add','materialsController@create')->name('CRUD.MaterialReciclable.create');
+      Route::post('/edit','materialsController@edit')->name('CRUD.MaterialReciclable.edit');
+      Route::post('/store','materialsController@store')->name('CRUD.MaterialReciclable.store');
+    });
+
+    Route::group(['prefix'=>'CuponesDeCanje'],function(){
+      Route::get('/list','couponController@index')->name('CRUD.CuponesDeCanje.index');
+      Route::get('/add','couponController@create')->name('CRUD.CuponesDeCanje.create');
+      Route::post('/edit','couponController@edit')->name('CRUD.CuponesDeCanje.edit');
+      Route::post('/store','couponController@store')->name('CRUD.CuponesDeCanje.store');
+    });
+
+    Route::group(['prefix'=>'GestionDeUsuarios'],function(){
+      Route::get('/list/{role?}','userMasterController@list')->name('CRUD.GestionDeUsuarios.list');
+      Route::get('/add/{role?}','userMasterController@create')->name('CRUD.GestionDeUsuarios.create');
+
+      Route::post('/edit','userMasterController@edit')->name('CRUD.GestionDeUsuarios.edit');
+      Route::post('/store','userMasterController@store')->name('CRUD.GestionDeUsuarios.store');
+      
+    });
 
     Route::get('/main', function () {return view('app/dashboard/'.session()->get('user.type'));})->name('CRUD.main');
   });
