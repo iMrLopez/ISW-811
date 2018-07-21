@@ -27,7 +27,7 @@ class userMasterController extends Controller
      */
     public function create($role = 'client')
     {
-        $this->validateRoleRequested($role); //Validate so no user is created as admin
+        $this->validateNoStoreOfAdminUser($role); //Validate so no user is created as admin
         $model = new User_master(['role'=> $role]);
         return view('app.CRUD.userMaster.form',['data'=>$model,'meta'=>array('accion'=>'Crear')]);
     }
@@ -52,13 +52,10 @@ class userMasterController extends Controller
      */
     public function store(Request $request) //TODO finish this
     {
-      $this->validateRoleRequested($request->input('role')); //Validate so no user is created as admin
+      $this->validateNoStoreOfAdminUser($request->input('role')); //Validate so no user is created as admin
       switch($request->input('accion')){
         case 'Password': //Used to modify only the password of the user
-          $model =  User_master::find($request->input('id'));
-          $model->name = $request->input('name');
-          $model->description = $request->input('name');
-          $model->CRCValue = $request->input('CRCValue');
+            //This was moved to SecurityController for code standardization
         break;
         case 'Editar': //Used to modify the data of this user
           $model =  User_master::find($request->input('id'));
@@ -67,6 +64,7 @@ class userMasterController extends Controller
           $model->CRCValue = $request->input('CRCValue');
         break;
         case 'Crear': //Used to create a new user
+          $this->validateNoCreationOfCollectionByOtherThanAdmin($request->input('role')); //Validate so no collection user is not created by non admin
           $model = new User_master([
               'name'=>$request->input('name'),
               'description'=>$request->input('description'),
@@ -77,17 +75,29 @@ class userMasterController extends Controller
         $model->save();
 
         if($request->input('role') == 'client'){ //Redirect to app main if this is a new client
-          return redirect()->route('app.main')->with('info', 'Bienvenido a Ecolones!');
-        }else{ //Redirect to listing if this is a collection center user
-          return redirect()->route('RUD.GestionDeUsuarios.list',array('role'=>$request->input('role')))->with('info', 'Proceso realizado correctamente');
+          $msg = array('type'=>'success','title'=>'Proceso realizado correctamente','contents'=>'Bienvenido a Ecolones!');
+          return redirect()->route('app.main')->with('msg', $msg);
+        }else{ //Redirect to listing if this is an admin
+          $msg = array('type'=>'success','title'=>'Proceso realizado correctamente','contents'=>'Se ha realizado el proceso correctamente');
+          return redirect()->route('CRUD.GestionDeUsuarios.list',array('role'=>$request->input('role')))->with('msg', $msg);
         }
 
     }
 
 
-    private function validateRoleRequested($role){ //Used to validate that we are not creating an admin user
+    private function $this->validateNoStoreOfAdminUser($request->input('role')); //Validate so no user is created as admin($role){ //Used to validate that we are not creating an admin user
       if(!($role == 'client' || $role == 'collection')){
-          return redirect()->route('mainAppRoute')->with('info', 'No es posible');
+          $msg = array('type'=>'error','title'=>'Bloqueado','contents'=>'El proceso ha sido bloqueado por el sistema');
+          return redirect()->route('mainAppRoute')->with('msg', $msg);
       }
     }
+
+    private validateNoCreationOfCollectionByOtherThanAdmin($request->input('role')){
+      if($request->input('role') == 'collection' && session('user.instance.role') === 'admin'){
+          $msg = array('type'=>'error','title'=>'Bloqueado','contents'=>'El proceso ha sido bloqueado por el sistema');
+          return redirect()->route('mainAppRoute')->with('msg', $msg);
+      }
+    }
+
+
 }

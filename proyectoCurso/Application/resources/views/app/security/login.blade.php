@@ -2,7 +2,7 @@
 @section('title',"Iniciar Sesion")
 
 @section('content')
-        <div class="full-page  section-image" data-color="green" data-image="{{asset('app/img/full-screen-image-1.jpg')}}">
+        <div class="full-page  section-image" data-color="black" data-image="{{asset('app/img/login.jpg')}}">
             <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
             <div class="content">
                 <div class="container">

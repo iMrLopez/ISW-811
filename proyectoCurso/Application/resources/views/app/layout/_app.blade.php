@@ -19,7 +19,7 @@
 
 <body>
   <div class="wrapper">
-    <div class="sidebar" data-color="red" data-image="{{asset('app/img/sidebar-5.jpg')}}">
+    <div class="sidebar" data-color="black" data-image="{{asset('app/img/sidebar-2.jpg')}}">
       <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -32,11 +32,11 @@
       </div>
       <div class="user">
         <div class="photo">
-          <img src="{{asset('app/img/default-avatar.png')}}" />
+          <img src="{{asset('app/img/faces/face-1.jpg')}}" />
         </div>
         <div class="info ">
           <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-            <span>{{session()->get('user.name')}}&nbsp;&nbsp;&nbsp;&nbsp;<b class="caret"></b></span>
+            <span>{{session()->get('user.instance.name')}}&nbsp;&nbsp;&nbsp;&nbsp;<b class="caret"></b></span>
           </a>
           <div class="collapse" id="collapseExample">
             <ul class="nav">
@@ -49,7 +49,7 @@
           </div>
         </div>
       </div>
-      @include('app.menu.'.session()->get('user.type'))
+      @include('app.menu.'.session()->get('user.instance.role'))
       <div class="main-panel">
         @include('app.menu.navbar')
         <div class="content">
@@ -102,15 +102,18 @@
   <!-- Light Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{asset('app/js/demo.js')}}"></script>
   <script type="text/javascript">
-  $(document)}}.ready(function()}} {
+  $(document).ready(function() {
     // Javascript method's body can be found in assets/js/demos.js
-    demo.initDashboardPageCharts()}};
+    //demo.initDashboardPageCharts()}};
 
-    demo.showNotification()}};
+  //  demo.showNotification()}};
 
-    demo.initVectorMap()}};
+    //demo.initVectorMap()}};
+    @if (session('msg'))
+      @include('app.layout._msg')
+    @endif
 
-  })}};
+  });
 </script>
 
 </html>

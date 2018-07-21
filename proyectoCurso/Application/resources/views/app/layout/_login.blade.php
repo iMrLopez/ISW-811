@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('app/img/apple-icon.png')}}">
@@ -63,7 +62,6 @@
     </footer>
   </div>
 </body>
-@yield('scripts','');
 <!--   Core JS Files   -->
 <script src="{{asset('app/js/core/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('app/js/core/popper.min.js')}}" type="text/javascript"></script>
@@ -114,5 +112,4 @@ $(document).ready(function() {
   }, 700)
 });
 </script>
-
 </html>
