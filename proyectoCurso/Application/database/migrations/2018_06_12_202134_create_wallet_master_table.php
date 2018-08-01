@@ -15,8 +15,8 @@ class CreateWalletMasterTable extends Migration
     {
         Schema::create('wallet_master', function (Blueprint $table) {
             $table->unsignedInteger('clientId')->references('id')->on('user_master');
-            $table->decimal('availableBalance',8,2);
             $table->decimal('redeemedBalance',8,2);
+            $table->decimal('actualBalance',8,2);
             $table->decimal('totalBalance',8,2);
         //    $table->dateTime('lastMovement');
             $table->timestamps();

@@ -64,7 +64,7 @@ class userMasterController extends Controller
           $model->CRCValue = $request->input('CRCValue');
         break;
         case 'Crear': //Used to create a new user
-          $this->validateNoCreationOfCollectionByOtherThanAdmin($request->input('role')); //Validate so no collection user is not created by non admin
+          $this->valNoCollByNoAdmin($request->input('role')); //Validate so no collection user is not created by non admin
           $model = new User_master([
               'name'=>$request->input('name'),
               'description'=>$request->input('description'),
@@ -84,20 +84,20 @@ class userMasterController extends Controller
 
     }
 
-
-    private function $this->validateNoStoreOfAdminUser($request->input('role')); //Validate so no user is created as admin($role){ //Used to validate that we are not creating an admin user
+    private function validateNoStoreOfAdminUser($role)
+    { //Validate so no user is created as admin($role){ //Used to validate that we are not creating an admin user
       if(!($role == 'client' || $role == 'collection')){
           $msg = array('type'=>'error','title'=>'Bloqueado','contents'=>'El proceso ha sido bloqueado por el sistema');
           return redirect()->route('mainAppRoute')->with('msg', $msg);
       }
     }
 
-    private validateNoCreationOfCollectionByOtherThanAdmin($request->input('role')){
+
+    private function valNoCollByNoAdmin($role){
       if($request->input('role') == 'collection' && session('user.instance.role') === 'admin'){
           $msg = array('type'=>'error','title'=>'Bloqueado','contents'=>'El proceso ha sido bloqueado por el sistema');
           return redirect()->route('mainAppRoute')->with('msg', $msg);
       }
     }
-
 
 }

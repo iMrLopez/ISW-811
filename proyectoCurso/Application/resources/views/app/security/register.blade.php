@@ -1,45 +1,72 @@
+@extends('app.layout._login')
+@section('title',"Iniciar Sesion")
 
-        <div class="full-page  section-image" data-color="green" data-image="../../assets/img/full-screen-image-2.jpg" ;>
+@section('content')
+        <div class="full-page  section-image" data-color="red" data-image="{{asset('app/img/login.jpg')}}">
             <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
             <div class="content">
                 <div class="container">
-                    <div class="col-md-4 col-sm-6 ml-auto mr-auto">
-                        <form class="form" method="" action="">
+                    <div class="col-md-6 col-sm-6 ml-auto mr-auto">
+                      {!! Form::open(['route' => 'security.doRegister','class'=>'form']) !!}
+                      {!! Form::hidden('role','client') !!}
+                      {!! Form::hidden('status','Activo') !!}
                             <div class="card card-login card-hidden">
                                 <div class="card-header ">
-                                    <h3 class="header text-center">Inicio de Sesion</h3>
+                                    <h3 class="header text-center">Registrar usuario</h3>
                                 </div>
                                 <div class="card-body ">
                                     <div class="card-body">
-                                      <div class="form-group">
-                                          <label>Correo electronico</label>
-                                          <input type="email" placeholder="Enter email" class="form-control" required>
-                                      </div>
+                                      <div class="row">
+                                      <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Numero de cedula</label>
-                                            <input type="text" placeholder="Enter username" class="form-control" required>
+                                            <label>Numero de identificacion</label>
+                                            {!! Form::text('uname','',['class' => 'form-control','required','placeholder'=>"Tu usuario"]) !!}
                                         </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nombre completo</label>
+                                            {!! Form::text('name','',['class' => 'form-control','required','placeholder'=>"Tu Nombre completo"]) !!}
+                                        </div>
+                                      </div>
+                                      </div>
+                                      <div class="row">
+                                      <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Correo electronico</label>
+                                            {!! Form::email('email','',['class' => 'form-control','required','placeholder'=>"Tu correo electronico"]) !!}
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Direccion de residencia</label>
+                                            {!! Form::text('address','',['class' => 'form-control','required','placeholder'=>"Tu direccion"]) !!}
+                                        </div>
+                                      </div>
+                                      </div>
+                                      <div class="row">
+                                      <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Numero de telefono</label>
+                                            {!! Form::text('telephone','',['class' => 'form-control','required','placeholder'=>"Tu telefono"]) !!}
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Contraseña</label>
-                                            <input type="password" placeholder="Password" class="form-control" required>
+                                            {!! Form::password('password',['class' => 'form-control','required','placeholder'=>"Tu contraseña"]) !!}
                                         </div>
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" value="" required>
-                                                    <span class="form-check-sign"></span>
-                                                    Terminos de servicio
-                                                </label>
-                                            </div>
-                                        </div>
+                                      </div>
+                                      </div>
                                     </div>
                                 </div>
                                 <div class="card-footer ml-auto mr-auto">
-                                    <button type="submit" class="btn btn-warning btn-wd">Registrarme</button>
+                                  {!! Form::submit('Registrar',['class'=>'btn btn-warning btn-wd']) !!}
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
+@endsection

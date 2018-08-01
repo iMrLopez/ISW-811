@@ -8,10 +8,14 @@ class wallet_master extends Model
 {
     //
     protected $table = "wallet_master";
-    protected $hidden = ['availableBalance','redeemedBalance','totalBalance'];
+    protected $hidden = ['redeemedBalance','totalBalance','actualBalance'];
 
     public function wallet_details(){
       return $this->hasMany('App\wallet_detail');
+    }
+
+    public function user_master(){
+      return $this->belongsTo('App\User_master', 'clientId', 'id');
     }
 
 }

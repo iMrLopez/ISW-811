@@ -23,13 +23,18 @@ Route::group(['prefix'=>'app'],function(){
   Route::get('/login', function () {return view('app/security/login');})->name('security.startLogin');
   Route::get('/logout','Security@doLogout')->name('security.doLogout');
 
+  //Security register
+    Route::get('/register', function () {return view('app/security/register');})->name('security.startRegister');
+    Route::post('/register','Security@doRegister')->name('security.doRegister');
+
   //Security change password
   //Route::get('/password', function () {return view('app.security.chgpass');})->name('security.startPasswordChange');
   Route::post('/password','Security@doChangePassword')->name('security.doChangePassword');
 
   //Main
 Route::get('/main', function () {return view('app/dashboard/general'/*.session()->get('user.instance.role')*/);})->name('app.main');
-  Route::get('/myProfile', function () {return view('app.security.myProfile');})->name('app.myProfile');
+
+Route::get('/myProfile', function () {return view('app.security.myProfile');})->name('app.myProfile');
 
   Route::group(['prefix'=>'CRUD'],function(){
 
@@ -61,6 +66,15 @@ Route::get('/main', function () {return view('app/dashboard/general'/*.session()
       Route::post('/edit','userMasterController@edit')->name('CRUD.GestionDeUsuarios.edit');
       Route::post('/store','userMasterController@store')->name('CRUD.GestionDeUsuarios.store');
 
+    });
+
+    Route::get('/main', function () {return view('app/dashboard/'.session()->get('user.instance.role'));})->name('CRUD.main');
+  });
+
+  Route::group(['prefix'=>'client'],function(){
+
+    Route::group(['prefix'=>'wallet'],function(){
+      Route::get('',function () {return view('app.wallet.index');})->name('client.wallet.index');
     });
 
     Route::get('/main', function () {return view('app/dashboard/'.session()->get('user.instance.role'));})->name('CRUD.main');

@@ -107,24 +107,13 @@
   <div class="col-md-6">
     <div class="card ">
       <div class="card-header ">
-        <h4 class="card-title">TOP de clientes global </h4>
-        <p class="card-category">Quien es el cliente con mas productos reciclados?</p>
+        <h4 class="card-title">Que son los Ecolones? </h4>
+        <p class="card-category"></p>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-md-12">
-            <div class="table-responsive">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td><div class="flag"><img src="{{asset('app/img/flags/US.png')}}"</div></td>
-                    <td>USA</td>
-                    <td class="text-right">2.920</td>
-                    <td class="text-right">53.23%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <video id="video" loop autoplay style='width:100%' src="{{ asset('site/video/inicio.mp4') }}"></video>
           </div>
         </div>
       </div>
@@ -140,40 +129,19 @@
   <div class="col-md-6">
     <div class="card  card-tasks">
       <div class="card-header ">
-        <h4 class="card-title">Noticias</h4>
-        <p class="card-category">Las ultimas noticias del mundo verde!</p>
+        <h4 class="card-title">Estadisticas mundiales</h4>
+        <p class="card-category">Las ultimas mundiales de produccion de energia!</p>
       </div>
       <div class="card-body ">
-        <div class="table-full-width">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" value="">
-                      <span class="form-check-sign"></span>
-                    </label>
-                  </div>
-                </td>
-                <td>Sign contract for "What are conference organizers afraid of?"</td>
-                <td class="td-actions text-right">
-                  <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-link">
-                    <i class="fa fa-edit"></i>
-                  </button>
-                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-link">
-                    <i class="fa fa-times"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div style="text-align:center">
+          <script type="text/javascript" src="https://oilprice.com/widgets/energyproduction.js"></script><noscript><!--Please Enable Javascript for this <a href="https://oilprice.com/">Oil Price</a> widget to work--></noscript>
+          <script type="text/javascript" src="https://oilprice.com/widgets/alternateenergy.js"></script><noscript><!--Please Enable Javascript for this <a href="https://oilprice.com/">Oil Price</a> widget to work--></noscript>
         </div>
       </div>
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="now-ui-icons loader_refresh spin"></i> Actualizado hace 3 minutos
+          <i class="now-ui-icons loader_refresh spin"></i> EN TIEMPO REAL
         </div>
       </div>
     </div>

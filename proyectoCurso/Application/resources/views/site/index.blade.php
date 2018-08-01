@@ -43,7 +43,7 @@
   <!--Hero-->
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <video id="video" loop no-controls autoplay style="height:100%; width:100%; object-fit: cover; z-index: 0;position: absolute; top: 0; left:0;" src="{{ asset('site/video/inicio.mp4') }}">
+      <video id="video" loop autoplay style="height:100%; width:100%; object-fit: cover; z-index: 0;position: absolute; top: 0; left:0;" src="{{ asset('site/video/inicio.mp4') }}">
         <h1 class="text_h center header cd-headline letters type">
           <span>Nos encanta</span>
           <span class="cd-words-wrapper waiting">
