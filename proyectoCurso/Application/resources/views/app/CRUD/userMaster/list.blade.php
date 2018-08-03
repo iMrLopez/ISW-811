@@ -16,6 +16,9 @@
                 <th style='text-align:center'>Nombre</th>
                 <th style='text-align:center'>Correo</th>
                 <th style='text-align:center'>Direccion</th>
+                @if($meta['role'] == 'collection')
+                <th style='text-align:center'>Centro de recoleccion</th>
+                @endif
                 <th style='text-align:center'>Acciones</th>
             </tr>
           </thead>
@@ -27,12 +30,17 @@
               <td>{{$actual->email}}</td>
               <td>{{$actual->address}}</td>
               @if($meta['role'] == 'collection')
-              <td style='vertical-align: middle;'>
-                {{ Form::open(array('url' => route('CRUD.GestionDeUsuarios.edit'))) }}
-                  {{Form::hidden('object', $actual->toJson() )}}
-                  {{Form::submit('Editar',['class'=>'btn btn-info btn-fill'])}}
-                {{ Form::close() }}
-              </td>
+                @if(isset($actual->collectionCenter->name))
+                  <td>{{$actual->collectionCenter->name}}</td>
+                @else
+                  <td><button class="btn btn-danger">No asignado! - debe asignarlo en centros de acopio</button></td>
+                @endif
+                <td style='vertical-align: middle;'>
+                  {{ Form::open(array('url' => route('CRUD.GestionDeUsuarios.edit'))) }}
+                    {{Form::hidden('object', $actual->toJson() )}}
+                    {{Form::submit('Editar',['class'=>'btn btn-info btn-fill'])}}
+                  {{ Form::close() }}
+                </td>
               @else
               <td style='vertical-align: middle;'>
                 No hay acciones disponibles

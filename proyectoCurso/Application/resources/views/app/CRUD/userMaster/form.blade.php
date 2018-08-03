@@ -8,13 +8,13 @@
         <h4 class="card-title">{{$meta['accion']}} usuario en el sistema</h4>
       </div>
       <div class="card-body">
-        {!! Form::open(['route' => 'CRUD.CuponesDeCanje.store','class'=>'form']) !!}
+        {!! Form::open(['route' => 'CRUD.GestionDeUsuarios.store','class'=>'form']) !!}
         {!! Form::hidden('id',$data->id) !!}
         {!! Form::hidden('role',$data->role) !!}
         {!! Form::hidden('accion',$meta['accion']) !!}
         <div class="form-group">
           <label>Nombre de Usuario</label>
-          {!! Form::text('1',$data->uname,['class' => 'form-control','required']) !!}
+          {!! Form::text('uname',$data->uname,['class' => 'form-control','required']) !!}
         </div>
         <div class="form-group">
           <label>Nombre</label>
@@ -28,10 +28,6 @@
           <label>Direccion</label>
           {!! Form::text('address',$data->address,['class' => 'form-control','required']) !!}
         </div>
-        <!-- <div class="form-group">
-          <label>Contraseña</label>
-          {!! Form::text('password',$data->password,['class' => 'form-control','required']) !!}
-        </div> -->
         <div class="form-group">
           <label>Telefono</label>
           {!! Form::text('telephone',$data->telephone,['class' => 'form-control','required']) !!}
