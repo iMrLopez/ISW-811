@@ -11,7 +11,7 @@ class wallet_detail extends Model
     protected $hidden = ['transactionAmmount','transactionDescription','transactionType','walletOldBalance','walletNewBalance'];
 
     public function wallet_master(){
-      return $this->belongsTo('App\wallet_master')
+      return $this->belongsTo('App\wallet_master');
     }
 
 }

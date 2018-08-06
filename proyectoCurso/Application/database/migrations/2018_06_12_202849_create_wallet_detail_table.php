@@ -15,10 +15,11 @@ class CreateWalletDetailTable extends Migration
     {
         Schema::create('wallet_detail', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('walletId')->references('clientId')->on('wallet_master');
             $table->decimal('transactionAmmount',8,2);
             $table->string('transactionDescription');
             $table->enum('transactionType',['Credito','Debito']);
+            $table->unsignedInteger('walletId')->references('clientId')->on('wallet_master');
+            $table->unsignedInteger('collectionCenterId')->references('id')->on('collectioncenter_master');
           //  $table->dateTime('transactionDate');
             $table->decimal('walletOldBalance',8,2);
             $table->decimal('walletNewBalance',8,2);

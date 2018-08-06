@@ -164,6 +164,9 @@ return [
         //App\Providers\AnnotationsServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
+        //ConsoleTVs\Charts\ChartsServiceProvider::class,
+
+
     ],
 
     /*

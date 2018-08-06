@@ -17,6 +17,6 @@ class User_master extends Model
     }
 
     public function wallet_master(){
-      return $this->hasOne('App\wallet_master','clientId','id');
+      return $this->hasOne('App\wallet_master','clientId','uname');
     }
 }

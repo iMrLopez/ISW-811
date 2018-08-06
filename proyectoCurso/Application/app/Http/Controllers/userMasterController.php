@@ -15,8 +15,7 @@ class userMasterController extends Controller
   * @return \Illuminate\Http\Response
   */
 
-  public function list($role = 'client')
-  {
+  public function list($role = 'client'){
     $Query_CollCenter = User_master::where('role',$role)->with('collectionCenter')->get();
     return view('app.CRUD.userMaster.list',['data' => $Query_CollCenter, 'meta'=>array('role'=>$role)]);
   }
@@ -26,8 +25,7 @@ class userMasterController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function create($role = 'client')
-  {
+  public function create($role = 'client'){
     $this->validateNoStoreOfAdminUser($role); //Validate so no user is created as admin
 
     $model = new User_master(['role'=> $role]);
@@ -42,8 +40,7 @@ class userMasterController extends Controller
   * @param  \App\collectionCenter_master  $collectionCenter_master
   * @return \Illuminate\Http\Response
   */
-  public function edit(Request $request)
-  {
+  public function edit(Request $request){
     $model =  User_master::with('collectionCenter')->find((get_object_vars(json_decode($request->input('object'))))['id']);
     $collectionCenter_master = collectionCenter_master::pluck('name','id');
     return view('app.CRUD.userMaster.form',['data'=>$model,'meta'=>array('accion'=>'Editar')]);
@@ -55,8 +52,7 @@ class userMasterController extends Controller
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
-  public function store(Request $request)
-  {
+  public function store(Request $request){
     $this->validateNoStoreOfAdminUser($request->input('role')); //Validate so no user is created as admin
     $this->valNoCollByNoAdmin($request->input('role')); //Validate so no collection user is not created by non admin
 
@@ -88,14 +84,12 @@ class userMasterController extends Controller
 
   }
 
-  private function validateNoStoreOfAdminUser($role)
-  { //Validate so no user is created as admin($role){ //Used to validate that we are not creating an admin user
+  private function validateNoStoreOfAdminUser($role){ //Validate so no user is created as admin($role){ //Used to validate that we are not creating an admin user
     if(!($role == 'client' || $role == 'collection')){
       $msg = array('type'=>'error','title'=>'Bloqueado','contents'=>'El proceso ha sido bloqueado por el sistema');
       return redirect()->route('mainAppRoute')->with('msg', $msg);
     }
   }
-
 
   private function valNoCollByNoAdmin($role){
     if($role == 'collection' && session('user.instance.role') === 'admin'){
@@ -103,5 +97,14 @@ class userMasterController extends Controller
       return redirect()->route('mainAppRoute')->with('msg', $msg);
     }
   }
+
+  public function getUserWithWallet($uname){
+
+    $resultado = ((User_master::with('wallet_master')->where('uname',$uname)));
+    dd($resultado);
+    return response ($resultado);
+  }
+
+
 
 }

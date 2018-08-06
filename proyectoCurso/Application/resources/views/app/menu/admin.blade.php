@@ -27,6 +27,12 @@
             <span class="sidebar-normal">Agregar</span>
           </a>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="{{route('CRUD.collCenter.startReporting')}}">
+            <span class="sidebar-mini">R</span>
+            <span class="sidebar-normal">Reportes</span>
+          </a>
+        </li>
       </ul>
     </div>
   </li>
