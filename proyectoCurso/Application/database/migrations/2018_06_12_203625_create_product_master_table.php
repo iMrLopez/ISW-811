@@ -13,12 +13,12 @@ class CreateProductMasterTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_master', function (Blueprint $table) {
+        Schema::create('Product_master', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',30);
             $table->string('description');
+            $table->longText('img');
             $table->decimal('cost',8,2);
-            $table->binary('img');
             $table->enum('status',['Activo','Inactivo']);
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateProductMasterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_master');
+        Schema::dropIfExists('Product_master');
     }
 }

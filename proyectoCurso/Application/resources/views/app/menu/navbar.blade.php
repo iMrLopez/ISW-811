@@ -61,9 +61,10 @@
                             <i class="nc-icon nc-umbrella-13"></i> Soporte Tecnico &nbsp;&nbsp;&nbsp;
                         </a>
                         <div class="divider"></div>
-                        <a href="{{route('security.doLogout')}}" class="dropdown-item text-danger">
-                            <i class="nc-icon nc-button-power"></i> Cerrar Sesion &nbsp;&nbsp;&nbsp;
-                        </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                        </form>
                     </div>
                 </li>
             </ul>

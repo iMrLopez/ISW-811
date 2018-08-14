@@ -1,4 +1,4 @@
-@extends('app.layout._app')
+@extends('layouts._app')
 @section('title',"Mantenimiento de materiales")
 @section('content')
 <div class="row">

@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="container">
         <nav>
-            <ul class="footer-menu">
+            <!-- <ul class="footer-menu">
                 <li>
                     <a href="#">
                         Home
@@ -22,13 +22,13 @@
                         Blog
                     </a>
                 </li>
-            </ul>
+            </ul> -->
             <p class="copyright text-center">
-                Â©
+                ©
                 <script>
-                    document.write(new Date()}}.getFullYear()}})}}
+                    document.write(new Date().getFullYear())
                 </script>
-                <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                <a href="http://mlopezitsolutions.com">Marny Lopez</a>, Universidad Tecnica Nacional
             </p>
         </nav>
     </div>

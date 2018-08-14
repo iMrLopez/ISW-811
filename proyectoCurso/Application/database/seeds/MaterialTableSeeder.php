@@ -6,7 +6,7 @@ class MaterialTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     * @return vouname
+     * @return vousername
      */
     public function run(){
       DB::table('material_master')->insert([

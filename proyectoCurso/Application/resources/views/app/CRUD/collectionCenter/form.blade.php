@@ -1,4 +1,4 @@
-@extends('app.layout._app')
+@extends('layouts._app')
 @section('title',"Mantenimiento de centros")
 @section('content')
 <div class="row">
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
           <label>Usuario administrador</label>
-          {!! Form::select('user_master_id', $meta['users'], $data->user_master_id,['class' => 'form-control','required']) !!}
+          {!! Form::select('User_id', $meta['users'], $data->User_id,['class' => 'form-control','required']) !!}
         </div>
         {!! Form::submit($meta['accion'],['class'=>'btn btn-warning btn-wd']) !!}
         {!! Form::close() !!}

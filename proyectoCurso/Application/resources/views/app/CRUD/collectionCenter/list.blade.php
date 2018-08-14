@@ -1,4 +1,4 @@
-@extends('app.layout._app')
+@extends('layouts._app')
 @section('title',"Lista de centros")
 @section('content')
 <div class="row">
@@ -26,7 +26,7 @@
               <td>{{$actual->id}}</td>
               <td>{{$actual->name}}</td>
               <td>{{$actual->address}}</td>
-              <td>{{$actual->provinceId}}</td>
+              <td>{{$actual->province_master_id}}</td>
               <td>{{$actual->status}}</td>
               <td>
                 {{ Form::open(array('url' => route('CRUD.collCenter.edit'))) }}

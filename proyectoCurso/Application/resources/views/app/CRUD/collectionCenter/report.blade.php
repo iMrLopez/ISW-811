@@ -1,4 +1,4 @@
-@extends('app.layout._app')
+@extends('layouts._app')
 @section('title',"Reporte de ecomonedas por centros")
 @section('content')
 

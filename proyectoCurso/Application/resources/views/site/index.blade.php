@@ -11,197 +11,212 @@
   <link href="{{ asset('site/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-
+  @guest
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo"><img style='width:30%' src="{{ asset('site/img/logo.png') }}"></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="{{ route('mainAppRoute') }}" class="btn-large waves-effect waves-light orange lighten-1">Ingresar a Mi Perfil</a></li>
+        <li><a href="{{ route('login') }}" class="btn-large waves-effect waves-light orange lighten-1">Ingresar a Mi Perfil</a></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="{{ route('mainAppRoute') }}" class="btn-large waves-effect waves-light orange lighten-1">Ingresar a Mi Perfil</a></li>
+        <li><a href="{{ route('login') }}" class="btn-large waves-effect waves-light orange lighten-1">Ingresar a Mi Perfil</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+  <!-- <li class="nav-item">
+    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+  </li> -->
+  @else
+  <li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+      {{ Auth::user()->name }} <span class="caret"></span>
+    </a>
 
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot" style="padding-top: 0px;">
-      <div class="container">
-        <div class="row center" style="margin-top: 20px;">
-          <video id="video-player-6" data-id="6" poster="" preload="auto" controls="controls" autoplay style="width: 50%; box-shadow: 0 4px 8px 0 #0000ff, 0 6px 20px 0 #0000ff;">
-            <source type="video/mp4" src="{{ asset('site/video/inicio.mp4') }}">
-            </video>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      @csrf
+    </form>
+  </div>
+</li>
+@endguest
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot" style="padding-top: 0px;">
+    <div class="container">
+      <div class="row center" style="margin-top: 20px;">
+        <video id="video-player-6" data-id="6" poster="" preload="auto" controls="controls" autoplay style="width: 50%; box-shadow: 0 4px 8px 0 #0000ff, 0 6px 20px 0 #0000ff;">
+          <source type="video/mp4" src="{{ asset('site/video/inicio.mp4') }}">
+          </video>
         </div>
         <!--
         <br><br>
         <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-        <div class="row center">
-          <a href="{{ route('mainAppRoute') }}" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Ingresar a Mi Perfil</a>
-        </div>
-        <br><br>-->
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
       </div>
+      <div class="row center">
+      <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Ingresar a Mi Perfil</a>
     </div>
-      <!-- <div class="parallax"><video id="video" loop autoplay style="height:100%; width:100%; object-fit: cover; z-index: 0;position: absolute; top: 0; left:0;" src="{{ asset('site/video/inicio.mp4') }}"></div> -->
-      <div class="parallax"><img src="{{ asset('site/img/background1.jpg') }}" alt="Unsplashed background img 1"></div>
+    <br><br>-->
   </div>
+</div>
+<!-- <div class="parallax"><video id="video" loop autoplay style="height:100%; width:100%; object-fit: cover; z-index: 0;position: absolute; top: 0; left:0;" src="{{ asset('site/video/inicio.mp4') }}"></div> -->
+<div class="parallax"><img src="{{ asset('site/img/background1.jpg') }}" alt="Unsplashed background img 1"></div>
+</div>
 
-  <div class="container">
-    <div class="section">
+<div class="container">
+  <div class="section">
 
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">autorenew</i></h2>
-            <h5 class="center">Incremento en el volumen de material limpio y separado.</h5>
-            <!-- <p class="light"></p> -->
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">bubble_chart</i></h2>
-            <h5 class="center">Mas comunicacion y educacion para mejorar el consumo.</h5>
-            <!-- <p class="light"></p> -->
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">shopping_cart</i></h2>
-            <h5 class="center">Sistema en linea para realizar el canjeo de tus ecolones.</h5>
-            <!-- <p class="light"></p> -->
-          </div>
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">autorenew</i></h2>
+          <h5 class="center">Incremento en el volumen de material limpio y separado.</h5>
+          <!-- <p class="light"></p> -->
         </div>
       </div>
 
-    </div>
-  </div>
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">bubble_chart</i></h2>
+          <h5 class="center">Mas comunicacion y educacion para mejorar el consumo.</h5>
+          <!-- <p class="light"></p> -->
+        </div>
+      </div>
 
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">Porque cuidar el ambiente es chido! </h5>
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">shopping_cart</i></h2>
+          <h5 class="center">Sistema en linea para realizar el canjeo de tus ecolones.</h5>
+          <!-- <p class="light"></p> -->
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="{{ asset('site/img/background2.jpg') }}" alt="Unsplashed background img 2"></div>
   </div>
+</div>
 
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Materiales que recibimos</h4>
-          <p class="left-align light">Todos estos materiales recibimos en cualquiera de nuestros centros de recoleccion, que esperas para visitarnos y ayudar al ambiente?</p>
-        </div>
-      </div>
-      <div class="row">
-        @foreach($materialMaster as $actual)
-        <div class="col s6 m4">
-          <div class="card" style="box-shadow: 0 4px 8px 0 {{$actual->HTMLColor}}, 0 6px 20px 0 {{$actual->HTMLColor}};">
-            <div class="card-image">
-              <img src="{{$actual->img}}">
-              <span class="card-title" style="text-shadow: 0 0 3px #FF0000, 0 0 5px {{$actual->HTMLColor}}">{{$actual->name}}</span>
-            </div>
-            <!-- <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div> -->
-          </div>
-        </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">Costa Rica es el unico pais con una moneda eco amigable</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="{{ asset('site/img/background3.jpg') }}" alt="Unsplashed background img 3"></div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Nuestros puntos de recoleccion</h4>
-          <p class="left-align light">Estamos ubicados en todo el pais!, abajo puedes visualizar todos nuestros puntos de recoleccion! ;)</p>
-        </div>
-      </div>
-      <div class="row">
-        @foreach($collCntrMaster as $actual)
-        <div class="col s6 m4">
-          <div class="card horizontal">
-            <div class="card-stacked">
-                <div class="card-content">
-                  <p>Punto de recoleccion: <b>{{$actual->name}}</b>.</p>
-                  <p>Direccion exacta: <b>{{$actual->address}}, {{$actual->province_master->name}}</b>.</p>
-                </div>
-              </div>
-            </div>
-        </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <!-- <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div> -->
-      </div>
-    </div>
-    <div class="parallax"><img src="{{ asset('site/img/background4.jpg') }}" alt="Unsplashed background img 3"></div>
-  </div>
-
-  <footer class="page-footer teal">
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
     <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Nuestro propósito</h5>
-          <p class="grey-text text-lighten-4">Impulsar una economía responsable y solidaria en Costa Rica, de participación, alianzas y responsabilidad compartida.</p>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Nuestra propuesta</h5>
-          <p class="grey-text text-lighten-4">Los materiales reciclables,  ahora tienen + valor.</p>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Nuestro apoyo</h5>
-          <p class="grey-text text-lighten-4">Apoyar el cumplimiento de la Ley 8839 de Gestión Integral de Residuos en Costa Rica y a los objetivos del desarrollo sostenible en el mundo.</p>
-        </div>
+      <div class="row center">
+        <h5 class="header col s12 light">Porque cuidar el ambiente es chido! </h5>
       </div>
     </div>
-    <div class="footer-copyright">
-      <div class="container">
+  </div>
+  <div class="parallax"><img src="{{ asset('site/img/background2.jpg') }}" alt="Unsplashed background img 2"></div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <h3><i class="mdi-content-send brown-text"></i></h3>
+        <h4>Materiales que recibimos</h4>
+        <p class="left-align light">Todos estos materiales recibimos en cualquiera de nuestros centros de recoleccion, que esperas para visitarnos y ayudar al ambiente?</p>
+      </div>
+    </div>
+    <div class="row">
+      @foreach($materialMaster as $actual)
+      <div class="col s6 m4">
+        <div class="card" style="box-shadow: 0 4px 8px 0 {{$actual->HTMLColor}}, 0 6px 20px 0 {{$actual->HTMLColor}};">
+          <div class="card-image">
+            <img src="{{$actual->img}}">
+            <span class="card-title" style="text-shadow: 0 0 3px #FF0000, 0 0 5px {{$actual->HTMLColor}}">{{$actual->name}}</span>
+          </div>
+          <!-- <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+        <a href="#">This is a link</a>
+      </div> -->
+    </div>
+  </div>
+  @endforeach
+</div>
+</div>
+</div>
+
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 light">Costa Rica es el unico pais con una moneda eco amigable</h5>
+      </div>
+    </div>
+  </div>
+  <div class="parallax"><img src="{{ asset('site/img/background3.jpg') }}" alt="Unsplashed background img 3"></div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <h3><i class="mdi-content-send brown-text"></i></h3>
+        <h4>Nuestros puntos de recoleccion</h4>
+        <p class="left-align light">Estamos ubicados en todo el pais!, abajo puedes visualizar todos nuestros puntos de recoleccion! ;)</p>
+      </div>
+    </div>
+    <div class="row">
+      @foreach($collCntrMaster as $actual)
+      <div class="col s6 m4">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+              <p>Punto de recoleccion: <b>{{$actual->name}}</b>.</p>
+              <p>Direccion exacta: <b>{{$actual->address}}, {{$actual->province_master->name}}</b>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
+</div>
+
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <!-- <div class="row center">
+      <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+    </div> -->
+  </div>
+</div>
+<div class="parallax"><img src="{{ asset('site/img/background4.jpg') }}" alt="Unsplashed background img 3"></div>
+</div>
+
+<footer class="page-footer teal">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Nuestro propósito</h5>
+        <p class="grey-text text-lighten-4">Impulsar una economía responsable y solidaria en Costa Rica, de participación, alianzas y responsabilidad compartida.</p>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Nuestra propuesta</h5>
+        <p class="grey-text text-lighten-4">Los materiales reciclables,  ahora tienen + valor.</p>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Nuestro apoyo</h5>
+        <p class="grey-text text-lighten-4">Apoyar el cumplimiento de la Ley 8839 de Gestión Integral de Residuos en Costa Rica y a los objetivos del desarrollo sostenible en el mundo.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
       Realizado por: <a class="brown-text text-lighten-3" href="http://mlopezitsolutions.com">Marny Lopez Lopez</a>
-      </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="{{ asset('site/js/materialize.js') }}"></script>
-  <script src="{{ asset('site/js/init.js') }}"></script>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{{ asset('site/js/materialize.js') }}"></script>
+<script src="{{ asset('site/js/init.js') }}"></script>
 
-  </body>
+</body>
 </html>
