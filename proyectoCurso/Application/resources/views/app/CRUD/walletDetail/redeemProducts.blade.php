@@ -4,25 +4,58 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-
+var products = [];
 
 function doCalculateTotal(prodId){ //Used to calculate the new total for this wallet_detail line prodId is the field number
+  var ammt_transactiontotal = 0;
 
   var regex =  /(?<=\()(.*?)(?=\))/;
 
   var field_transactionDescription = document.getElementById('wallet_detail_transactionDescription'+prodId);
   var field_cost = document.getElementById('tmp_productCost'+prodId);
-  var field_ammount = document.getElementById('productAmmount'+prodId);
+
+  var field_selectorProductQuantity = document.getElementById('selectorProductQuantity'+prodId);
+  var field_productQuantity = document.getElementById('productQuantity'+prodId);
+
+
   var field_transactionAmmount = document.getElementById('transactionAmmount'+prodId);
+
   var field_totalTransaction = document.getElementById('totalTransaction');
+  var field_walletOldBalance = document.getElementById('walletOldBalance');
+  var field_walletNewBalance = document.getElementById('walletNewBalance');
+
+  if(ammt_transactiontotal <= field_walletOldBalance.value && (field_walletOldBalance.value != 0)){
+
+    field_transactionDescription.value = field_transactionDescription.value.replace(regex, '1'); //New transaction description
+    field_transactionAmmount.value =  (field_cost.value); //New transactionAmmount for this
+
+    products.push({type:field_transactionDescription.value, ammount:field_transactionAmmount.value}); //Save the product on the control array
 
 
-  field_transactionDescription.value = field_transactionDescription.value.replace(regex, field_ammount.value);
-  field_transactionAmmount.value =  (field_cost.value * field_ammount.value);
+        products.forEach(function(element) {
+          //console.log(element);
+          ammt_transactiontotal += element.ammount;
+        });
 
-totalTransaction
 
 
+
+
+    field_totalTransaction.value = ammt_transactiontotal; //Save the  total transaction value
+
+    field_walletNewBalance.value = (field_walletOldBalance.value - ammt_transactiontotal); //Save the new balance on the wallet display
+
+  }else{
+
+    swal({
+      type: 'error',
+      title: 'Producto no adicionado',
+      text: 'El saldo de su billetera no es suficiente para comprar este producto',
+      footer: '<b>Marny A. Lopez Lopez - 1 1623 0677</b>'
+    })
+
+
+  }
 
 
 
@@ -46,7 +79,8 @@ totalTransaction
           <div class="col-7">
             <div class="numbers">
               <p class="card-category">Balance de la cuenta</p>
-              <h4 class="card-title">{!! Form::text(null,Auth::user()->wallet_master->actualBalance,['readonly','class'=>'form-control','id'=>'walletOldBalance']) !!}</h4>
+              {!! Form::hidden(null,Auth::user()->wallet_master->actualBalance,['id'=>'walletOldBalance']) !!}
+              <h4 class="card-title">{{Auth::user()->wallet_master->actualBalance}}</h4>
             </div>
           </div>
         </div>
@@ -65,7 +99,7 @@ totalTransaction
           <div class="col-7">
             <div class="numbers">
               <p class="card-category">Ecomonedas a canjear</p>
-              <h4 class="card-title">{!! Form::text('wallet_master[totalTransaction]','0.00',['id'=>'totalTransaction','readonly','class'=>'form-control']) !!}</h4>
+              <h4 class="card-title">{!! Form::text('wallet_master[totalTransaction]',null,['id'=>'totalTransaction','readonly','class'=>'form-control']) !!}</h4>
             </div>
           </div>
         </div>
@@ -84,7 +118,7 @@ totalTransaction
           <div class="col-7">
             <div class="numbers">
               <p class="card-category">Ecomonedas Restantes</p>
-              <h4 class="card-title">{!! Form::text('wallet_detail[walletNewBalance]','0.00',['readonly','class'=>'form-control']) !!}</h4>
+              <h4 class="card-title">{!! Form::text('wallet_detail[walletNewBalance]',null,['id'=>'walletNewBalance','readonly','class'=>'form-control']) !!}</h4>
             </div>
           </div>
         </div>
@@ -110,8 +144,10 @@ totalTransaction
           </div>
           <div class="col-7">
             <div class="numbers">
-              <p class="card-category">{{$actual->name}}: </p>
-              <h4 class="card-title">{!! Form::number('wallet_detail['.$actual->id.'][productAmmount]','0.00',['min'=>'0','id'=>'productAmmount'.$actual->id,'class'=>'form-control','onChange'=>'doCalculateTotal('.$actual->id.')']) !!}</h4>
+              <p class="card-category"></p>
+              {!! Form::hidden('wallet_detail['.$actual->id.'][productQuantity]',0.00,['id'=>'productQuantity'.$actual->id]) !!}
+              <h4 class="card-title">{{$actual->name}}</h4>
+              <button type='button' class="btn btn-large btn-info" onClick='doCalculateTotal({{$actual->id}})'>Agregar</button>
               <p class="card-category">x {{$actual->cost}} = </p>
             </div>
           </div>
@@ -128,8 +164,6 @@ totalTransaction
   @endforeach
 </div>
 {!! Form::close() !!}
-
-
 
 
 @endsection()
