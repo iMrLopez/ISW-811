@@ -9,7 +9,7 @@ class wallet_master extends Model
     //
     protected $primaryKey = "clientId";
     protected $table = "wallet_master";
-    protected $hidden = ['redeemedBalance','totalBalance','actualBalance'];
+    protected $fillable = ['redeemedBalance','totalBalance','actualBalance'];
 
     public function wallet_details(){
       return $this->hasMany('App\wallet_detail', 'walletId', 'clientId');

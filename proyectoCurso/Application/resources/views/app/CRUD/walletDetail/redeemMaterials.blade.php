@@ -66,11 +66,6 @@ function doCalculateTotal(prodId){ //Used to calculate the new total for this wa
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
-            <a href="javascript:location.reload(true)" class="btn pull-right btn-info"><i class="fa fa-refresh"></i>Iniciar de nuevo</a>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-md-4">
             <label>Numero de identificacion</label>
             {!! Form::password('wallet_master[id]',['required','id'=>'wallet_masterid','class'=>'form-control','placeholder'=>'Ingresa identificacion del cliente','onChange' => 'getWalletMaster()']) !!}
@@ -84,14 +79,18 @@ function doCalculateTotal(prodId){ //Used to calculate the new total for this wa
             {!! Form::text('wallet_master[email]',null,['readonly','id'=>'wallet_masteremail','class'=>'form-control','placeholder'=>'Ingresa la identificacion del cliente']) !!}
           </div>
         </div>
+      </div>
+      <div class="card-footer">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
+            <p>&nbsp;</p>
+            <input type="button" value="Reiniciar Transaccion" onClick="history.go(0)" class='btn pull-left btn-info btn-wd'>
+          </div>
+          <div class="col-md-6">
             <p>&nbsp;</p>
             {!! Form::submit('Realizar transaccion',['class'=>'btn pull-right btn-warning btn-wd']) !!}
           </div>
         </div>
-      </div>
-      <div class="card-footer">
       </div>
     </div>
   </div>

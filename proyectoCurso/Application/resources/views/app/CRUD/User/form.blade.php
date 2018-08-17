@@ -29,8 +29,8 @@
           {!! Form::text('address',$data->address,['class' => 'form-control','required']) !!}
         </div>
         <div class="form-group">
-          <label>Telefono</label>
-          {!! Form::text('telephone',$data->telephone,['class' => 'form-control','required']) !!}
+          <label>Centro de recoleccion</label>
+          {!! Form::select('collectionCenter_id', $collectionCenter_master, $data->collectionCenter_id,['class' => 'form-control','required']) !!}
         </div>
         <div class="form-group">
           <label>Estado</label>

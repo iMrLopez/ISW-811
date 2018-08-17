@@ -40,22 +40,23 @@ class walletController extends Controller
   public function doConvertMaterials(Request $request){
 
     foreach($request->input('wallet_detail') as $item){
+      if($item['transactionAmmount'] != '0'){
+        $wallet_master = wallet_master::find($request->input('wallet_master')['id']);
 
-      $wallet_master = wallet_master::find($request->input('wallet_master')['id']);
-
-      $model = new wallet_detail([
-        'transactionAmmount'=>$item['transactionAmmount'],
-        'transactionDescription'=>$item['transactionDescription'],
-        'transactionType'=>$item['transactionType'],
-        'walletId'=>$wallet_master->clientId,
-        'collectionCenterId'=>$request->input('collectionCenter_master')['id'],
-        'walletOldBalance'=>$wallet_master->actualBalance,
-        'walletNewBalance'=>$wallet_master->actualBalance + $item['transactionAmmount']
-      ]);
-      $wallet_master->actualBalance = $wallet_master->actualBalance + $item['transactionAmmount']; //Save the new balance on the wallet
-      $wallet_master->totalBalance = $wallet_master->totalBalance + $item['transactionAmmount']; //Save the total ammount for the historic shown to the user
-      $wallet_master->save(); //save the wallet master
-      $model->save(); //save the wallet detail
+        $model = new wallet_detail([
+          'transactionAmmount'=>$item['transactionAmmount'],
+          'transactionDescription'=>$item['transactionDescription'],
+          'transactionType'=>$item['transactionType'],
+          'walletId'=>$wallet_master->clientId,
+          'collectionCenterId'=>$request->input('collectionCenter_master')['id'],
+          'walletOldBalance'=>$wallet_master->actualBalance,
+          'walletNewBalance'=>$wallet_master->actualBalance + $item['transactionAmmount']
+        ]);
+        $wallet_master->actualBalance = $wallet_master->actualBalance + $item['transactionAmmount']; //Save the new balance on the wallet
+        $wallet_master->totalBalance = $wallet_master->totalBalance + $item['transactionAmmount']; //Save the total ammount for the historic shown to the user
+        $wallet_master->save(); //save the wallet master
+        $model->save(); //save the wallet detail
+      }
     }
     $msg = array('type'=>'success','title'=>'Proceso realizado','contents'=>'Se han agregado los materiales a la billetera del cliente');
     return redirect()->route('app.appEco')->with('msg', $msg);
@@ -65,14 +66,40 @@ class walletController extends Controller
 
   //Create a new coupon (get)
   public function startCreateCoupon(){
-    
     return view('app.CRUD.walletDetail.redeemProducts',['data'=>Product_master::where('status','Activo')->get()]);
   }
 
   //Create a new coupon (post)
-  public function doCreateCoupon(Request $request){}
+  public function doCreateCoupon(Request $request){
 
+    foreach($request->input('wallet_detail') as $item){
+      if($item['transactionAmmount'] != '0'){
+        $wallet_master = wallet_master::find($request->input('clientId'));
 
+        $model = new wallet_detail([
+          'transactionAmmount'=>$item['transactionAmmount'],
+          'transactionDescription'=>$item['transactionDescription'],
+          'transactionType'=>$item['transactionType'],
+          'walletId'=>$wallet_master->clientId,
+          'walletOldBalance'=>$wallet_master->actualBalance,
+          'walletNewBalance'=>$wallet_master->actualBalance - $item['transactionAmmount']
+        ]);
+        $wallet_master->actualBalance = $wallet_master->actualBalance - $item['transactionAmmount']; //Save the new balance on the wallet
+        $wallet_master->redeemedBalance = $wallet_master->redeemedBalance + $item['transactionAmmount']; //Save the total redeemedBalance for the historic shown to the user
+        $wallet_master->save(); //save the wallet master
+        $model->save(); //save the wallet detail
+      }
+    }
+    $msg = array('type'=>'success','title'=>'Proceso realizado','contents'=>'Se han generado los cupones!');
+    return redirect()->route('client.coupon.getActiveCoupons')->with('msg', $msg);
+
+  }
+
+  //Get all active coupons for this user (get)
+  public function getActiveCoupons(){ //TODO generate a QR 
+    $data = wallet_detail::where([['status','Activo'],['transactionType','Debito'],['walletId',Auth::user()->id]])->get();
+    return view('app.CRUD.walletDetail.activeCoupons',['data'=>$data]);
+  }
 
 
 }

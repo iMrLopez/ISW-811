@@ -17,11 +17,13 @@ class collCntrController extends Controller
     $this->middleware('auth');
   }
 
+  //GET -> lISTING
   public function index(){
     $Query_CollCenter = collectionCenter_master::with('province_master')/*->orderBy('preciounitario', 'desc')*/->get();
     return view('app.CRUD.collectionCenter.list',['data' => $Query_CollCenter]);
   }
 
+  //GET -> CREATE
   public function create(){
     $model = new collectionCenter_master();
     $View_users = User::where('role','collection')->pluck('name','id');
@@ -29,13 +31,14 @@ class collCntrController extends Controller
     return view('app.CRUD.collectionCenter.form',['data'=>$model,'meta'=>array('accion'=>'Crear','provinces'=>$View_provinces,'users'=>$View_users)]);
   }
 
+  //GET -> EDIT
   public function edit(Request $request){
     $model =  collectionCenter_master::find((get_object_vars(json_decode($request->input('object'))))['id']);
-    $View_users = User::where('role','collection')->pluck('name','id');
     $View_provinces = province_master::pluck('name','id');
-    return view('app.CRUD.collectionCenter.form',['data'=>$model,'meta'=>array('accion'=>'Editar','provinces'=>$View_provinces,'users'=>$View_users)]);
+    return view('app.CRUD.collectionCenter.form',['data'=>$model,'meta'=>array('accion'=>'Editar','provinces'=>$View_provinces)]);
   }
 
+  //POST -> STORE (CREATE AND EDIT)
   public function store(Request $request){
     switch($request->input('accion')){
       case 'Editar':
@@ -48,49 +51,48 @@ class collCntrController extends Controller
       $model = new collectionCenter_master([
         'name'=>$request->input('name'),
         'address'=>$request->input('address'),
-        'status'=>$request->input('status')
-      ]);
+        'status'=>$request->input('status')]);
       break;
     }
     $model->province_master()->associate(province_master::find($request->input('province_master_id')));
-    $model->User()->associate(User::find($request->input('User_id')));
-    $model->save();
+    if($model->save()){
+      $msg = array('type'=>'success','title'=>'Proceso realizado correctamente','contents'=>'Proceso realizado correctamente');
+    }else{
+      $msg = array('type'=>'error','title'=>'Proceso no realizado','contents'=>'Proceso no realizado');
+    }
 
-    return redirect()->route('CRUD.collCenter.index')->with('info', 'Proceso realizado correctamente');
+    return redirect()->route('CRUD.collCenter.index')->with('msg', $msg);
   }
 
   public function doReporting(Request $request){
 
     $chart = new Graficador();
-
-
     $titulo="Reporte de materiales generados por mes";
 
-    //TODO
-    $result = DB::table('wallet_detail')->select(DB::raw("collectionCenterId,SUM(transactionAmmount)"))
-    ->where(DB::raw("transactionType = 'Credito' AND (created_at BETWEEN '2010-01-30 14:15:55' AND '2010-09-29 10:15:55')"))
-    ->groupBy('collectionCenterId')->get();
+    $datestart =$request->input('datestart').' 00:00:00';
+    $dateend = $request->input('dateend').' 00:00:00';
 
+    $result = DB::table('wallet_detail')->selectRaw("collectionCenterId,SUM(transactionAmmount)")->whereRaw("(transactionType = 'Credito') AND (created_at BETWEEN '".$datestart."' AND '".$dateend."')")->get();
     $chart->labels($result->pluck('collectionCenterId'));
-
+    
     switch ($request->input('type')) {
       case 'bar':
-      $dataset= $chart->dataset($titulo,'bar',$result->pluck('transactionAmmount'));
+      $dataset= $chart->dataset($titulo,'bar',$result->pluck('SUM(transactionAmmount)'));
       break;
       case 'pie':
-      $dataset= $chart->dataset($titulo,'pie',$result->pluck('transactionAmmount'));
+      $dataset= $chart->dataset($titulo,'pie',$result->pluck('SUM(transactionAmmount)'));
       break;
       case 'donut':
-      $dataset= $chart->dataset($titulo,'doughnut',$result->pluck('transactionAmmount'));
+      $dataset= $chart->dataset($titulo,'doughnut',$result->pluck('SUM(transactionAmmount)'));
       break;
       case 'line':
-      $dataset= $chart->dataset($titulo,'line',$result->pluck('transactionAmmount'));
+      $dataset= $chart->dataset($titulo,'line',$result->pluck('SUM(transactionAmmount)'));
       break;
       case 'polarArea':
-      $dataset= $chart->dataset($titulo,'polarArea',$result->pluck('transactionAmmount'));
+      $dataset= $chart->dataset($titulo,'polarArea',$result->pluck('SUM(transactionAmmount)'));
       break;
       default:
-      $dataset= $chart->dataset($titulo,'bar',$result->pluck('transactionAmmount'));
+      $dataset= $chart->dataset($titulo,'bar',$result->pluck('SUM(transactionAmmount)'));
     }
 
     $dataset->backgroundColor(['#a9cce3', ' #a9dfbf', '#fad7a0','#c39bd3','#f9e79f','#a3e4d7', '#fadbd8', '#e59866']);

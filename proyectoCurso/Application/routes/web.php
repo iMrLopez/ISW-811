@@ -51,10 +51,10 @@ Route::group(['prefix'=>'appEco'],function(){
       Route::post('/store','ProductController@store')->name('CRUD.Product.store');
     });
 
-    //CRUD relacionado a los usuaiors
+    //CRUD relacionado a los usuarios
     Route::group(['prefix'=>'GestionDeUsuarios'],function(){
       Route::get('/list/{role?}','UserController@list')->name('CRUD.GestionDeUsuarios.list');
-      Route::get('/add/{role?}','UserController@create')->name('CRUD.GestionDeUsuarios.create');
+      Route::get('/add','UserController@create')->name('CRUD.GestionDeUsuarios.create');
 
       Route::post('/edit','UserController@edit')->name('CRUD.GestionDeUsuarios.edit');
       Route::post('/store','UserController@store')->name('CRUD.GestionDeUsuarios.store');
@@ -75,10 +75,13 @@ Route::group(['prefix'=>'appEco'],function(){
     Route::group(['prefix'=>'wallet'],function(){
       Route::get('','walletController@doGetWalletStatus')->name('client.wallet.index');
     });
-    Route::group(['prefix'=>'CrearCuponCanje'],function(){
+
+    Route::group(['prefix'=>'CuponCanje'],function(){
       Route::get('','walletController@startCreateCoupon')->name('client.coupon.startCreate');
       Route::post('','walletController@doCreateCoupon')->name('client.coupon.doCreate');
+      Route::get('/listActive','walletController@getActiveCoupons')->name('client.coupon.getActiveCoupons');
     });
+
   });
 
 

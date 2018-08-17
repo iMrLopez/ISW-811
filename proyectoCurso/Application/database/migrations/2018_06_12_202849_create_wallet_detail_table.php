@@ -23,6 +23,7 @@ class CreateWalletDetailTable extends Migration
           //  $table->dateTime('transactionDate');
             $table->decimal('walletOldBalance',8,2);
             $table->decimal('walletNewBalance',8,2);
+            $table->enum('status',['Activo','Inactivo'])->default('Activo');
             $table->timestamps();
         });
     }

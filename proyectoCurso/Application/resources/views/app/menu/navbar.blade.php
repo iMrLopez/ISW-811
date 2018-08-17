@@ -16,47 +16,13 @@
             <span class="navbar-toggler-bar burger-lines"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end">
-            <!-- <ul class="nav navbar-nav mr-auto">
-                <form class="navbar-form navbar-left navbar-search-form" role="search">
-                    <div class="input-group">
-                        <i class="nc-icon nc-zoom-split"></i>
-                        <input type="text" value="" class="form-control" placeholder="Search...">
-                    </div>
-                </form>
-            </ul> -->
             <ul class="navbar-nav">
-                <!-- li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i class="nc-icon nc-planet"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Contactar a soporte</a>
-                        <li class="divider"></li>
-                        <a class="dropdown-item" href="#">Sobre el sistema</a>
-                    </ul>
-                </li>
-                 <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <i class="nc-icon nc-bell-55"></i>
-                        <span class="notification">5</span>
-                        <span class="d-lg-none">Notification</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Notification 1</a>
-                        <a class="dropdown-item" href="#">Notification 2</a>
-                        <a class="dropdown-item" href="#">Notification 3</a>
-                        <a class="dropdown-item" href="#">Notification 4</a>
-                        <a class="dropdown-item" href="#">Notification 5</a>
-                    </ul>
-                </li> -->
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="nc-icon nc-bullet-list-67"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">
-                            <i class="nc-icon nc-email-85"></i> Mensajes &nbsp;&nbsp;&nbsp;
-                        </a>
                         <a class="dropdown-item" href="#">
                             <i class="nc-icon nc-umbrella-13"></i> Soporte Tecnico &nbsp;&nbsp;&nbsp;
                         </a>

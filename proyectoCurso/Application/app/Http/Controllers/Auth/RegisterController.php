@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\wallet_master;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
     }
 
@@ -62,16 +63,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'username' => $data['username'],
-            'name' => $data['name'],
-            'address' => $data['address'],
-            'telephone' => $data['telephone'],
-            'status' => $data['status'],
-            'email' => $data['email'],
-            'role' => $data['role'],
-            'password' => Hash::make($data['password']),
-            //TODO crear aqui la asociacion de la nueva billetera
-        ]);
+
+      $wallet_master = new wallet_master([
+        //'clientId' =>$data['username'],
+        'redeemedBalance' => 0,
+        'actualBalance' => 0,
+        'totalBalance' => 0,
+      ]);
+
+
+      $User = User::create([
+          'username' => $data['username'],
+          'name' => $data['name'],
+          'address' => $data['address'],
+          'telephone' => $data['telephone'],
+          'status' => $data['status'],
+          'email' => $data['email'],
+          'role' => $data['role'],
+          'password' => Hash::make($data['password']),
+          'wallet_master' =>$wallet_master
+      ]);
+
+      $User->wallet_master()->save($wallet_master);
+
+      return $User;
     }
 }

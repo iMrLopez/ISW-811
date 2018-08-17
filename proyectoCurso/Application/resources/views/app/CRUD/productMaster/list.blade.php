@@ -13,6 +13,7 @@
           <thead>
             <tr>
                 <th style='text-align:center'>Nombre</th>
+                <th style='text-align:center'>Imagen</th>
                 <th style='text-align:center'>Descripcion</th>
                 <th style='text-align:center'>Costo</th>
                 <th style='text-align:center'>Acciones</th>
@@ -22,6 +23,7 @@
             @foreach ($data as $actual)
             <tr>
               <td>{{$actual->name}}</td>
+              <td style='text-align:center;width: 25%;'><img width='60%' src='{{$actual->img}}'></td>
               <td>{{$actual->description}}</td>
               <td>{{$actual->cost}}</td>
               <td style='vertical-align: middle;'>

@@ -35,6 +35,9 @@ class UsersTableSeeder extends Seeder
       DB::table('users')->insert([
         'username' => "116230677",
         'password' => bcrypt("116230677"),
+        'email'=>'marny.lopez@outlook.com',
+        'address'=>'alajuela costa rica, calle 506',
+        'telephone'=>'+50660453526',
         'name' => "Marny Lopez",
         'status' => "Activo",
         'role' => "Client",

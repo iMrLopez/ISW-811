@@ -25,22 +25,15 @@
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-  <!-- <li class="nav-item">
-    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-  </li> -->
   @else
-  <li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-      {{ Auth::user()->name }} <span class="caret"></span>
-    </a>
-
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-      @csrf
-    </form>
-  </div>
-</li>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo"><img style='width:30%' src="{{ asset('site/img/logo.png') }}"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{ route('app.appEco') }}" class="btn-large waves-effect waves-light orange lighten-1">Volver a Mi Perfil</a></li>
+      </ul>
+    </div>
+  </nav>
 @endguest
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot" style="padding-top: 0px;">
@@ -50,26 +43,14 @@
           <source type="video/mp4" src="{{ asset('site/video/inicio.mp4') }}">
           </video>
         </div>
-        <!--
-        <br><br>
-        <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
-        <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-      </div>
-      <div class="row center">
-      <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Ingresar a Mi Perfil</a>
-    </div>
-    <br><br>-->
   </div>
 </div>
-<!-- <div class="parallax"><video id="video" loop autoplay style="height:100%; width:100%; object-fit: cover; z-index: 0;position: absolute; top: 0; left:0;" src="{{ asset('site/video/inicio.mp4') }}"></div> -->
 <div class="parallax"><img src="{{ asset('site/img/background1.jpg') }}" alt="Unsplashed background img 1"></div>
 </div>
-
+<!--   Icon Section   -->
 <div class="container">
   <div class="section">
 
-    <!--   Icon Section   -->
     <div class="row">
       <div class="col s12 m4">
         <div class="icon-block">
@@ -126,13 +107,6 @@
             <img src="{{$actual->img}}">
             <span class="card-title" style="text-shadow: 0 0 3px #FF0000, 0 0 5px {{$actual->HTMLColor}}">{{$actual->name}}</span>
           </div>
-          <!-- <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-        <a href="#">This is a link</a>
-      </div> -->
     </div>
   </div>
   @endforeach
@@ -176,13 +150,9 @@
     </div>
   </div>
 </div>
-
 <div class="parallax-container valign-wrapper">
   <div class="section no-pad-bot">
     <div class="container">
-      <!-- <div class="row center">
-      <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-    </div> -->
   </div>
 </div>
 <div class="parallax"><img src="{{ asset('site/img/background4.jpg') }}" alt="Unsplashed background img 3"></div>

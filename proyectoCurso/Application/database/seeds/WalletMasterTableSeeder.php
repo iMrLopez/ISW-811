@@ -12,8 +12,8 @@ class WalletMasterTableSeeder extends Seeder
       DB::table('wallet_master')->insert([
         'clientId' => "116230677",
         'redeemedBalance' => 0,
-        'actualBalance' => 0,
-        'totalBalance' => 0,
+        'actualBalance' => 4200,
+        'totalBalance' => 4200,
       ]);
     }
 }

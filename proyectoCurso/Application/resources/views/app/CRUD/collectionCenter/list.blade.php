@@ -26,7 +26,7 @@
               <td>{{$actual->id}}</td>
               <td>{{$actual->name}}</td>
               <td>{{$actual->address}}</td>
-              <td>{{$actual->province_master_id}}</td>
+              <td>{{$actual->province_master->name}}</td>
               <td>{{$actual->status}}</td>
               <td>
                 {{ Form::open(array('url' => route('CRUD.collCenter.edit'))) }}

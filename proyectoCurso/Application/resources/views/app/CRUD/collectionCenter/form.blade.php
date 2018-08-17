@@ -27,10 +27,7 @@
           <label>Estado</label>
           {!! Form::select('status', ['Activo' => 'Activo', 'Inactivo' => 'Inactivo'], $data->status,['class' => 'form-control','required']) !!}
         </div>
-        <div class="form-group">
-          <label>Usuario administrador</label>
-          {!! Form::select('User_id', $meta['users'], $data->User_id,['class' => 'form-control','required']) !!}
-        </div>
+        
         {!! Form::submit($meta['accion'],['class'=>'btn btn-warning btn-wd']) !!}
         {!! Form::close() !!}
       </div>

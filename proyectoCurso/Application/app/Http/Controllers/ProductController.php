@@ -29,23 +29,33 @@ class ProductController extends Controller
   }
 
   public function store(Request $request){
+    //Get img as base64 to store on database
+    if($request->file('image') != null)
+    $imgData = 'data:'.mime_content_type($request->file('image')->getPathName()).';base64,'.base64_encode(file_get_contents($request->file('image')->getPathName()));
 
     switch($request->input('accion')){
       case 'Editar':
       $model =  Product_master::find($request->input('id'));
       $model->name = $request->input('name');
+      if($request->file('image') != null)
+      $model->img = $imgData;
       $model->description = $request->input('description');
       $model->cost = $request->input('cost');
       break;
       case 'Crear':
       $model = new Product_master([
         'name'=>$request->input('name'),
+        'img'=>$imgData,
         'description'=>$request->input('description'),
         'cost'=>$request->input('cost')
       ]);
       break;
     }
-    $model->save();
+    if($model->save()){
+      $msg = array('type'=>'success','title'=>'Producto editado','contents'=>'Se ha realizado el proceso correctamente');
+      return redirect()->route('CRUD.Product.index')->with('info', 'Proceso realizado correctamente')->with('msg', $msg);
+    }
+
     return redirect()->route('CRUD.Product.index')->with('info', 'Proceso realizado correctamente');
   }
 

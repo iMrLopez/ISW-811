@@ -6,7 +6,7 @@
       </div>
       <div class="card-body">
         {!! Form::open(['route' => 'security.doChangePassword','class'=>'form']) !!}
-        {!! Form::hidden('id',session()->get('user.instance.id')) !!}
+        {!! Form::hidden('id',Auth::user()->id) !!}
         {!! Form::hidden('accion','Password') !!}
         <div class="form-group">
           <label>Contraseña antigua</label>
