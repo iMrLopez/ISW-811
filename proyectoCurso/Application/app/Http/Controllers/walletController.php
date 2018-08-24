@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use App\Material_master;
 use App\collectionCenter_master;
@@ -96,8 +95,8 @@ class walletController extends Controller
   }
 
   //Get all active coupons for this user (get)
-  public function getActiveCoupons(){ //TODO generate a QR 
-    $data = wallet_detail::where([['status','Activo'],['transactionType','Debito'],['walletId',Auth::user()->id]])->get();
+  public function getActiveCoupons(){ //TODO generate a QR
+    $data = wallet_detail::where([['status','Activo'],['transactionType','Debito'],['walletId',Auth::user()->username]])->get();
     return view('app.CRUD.walletDetail.activeCoupons',['data'=>$data]);
   }
 

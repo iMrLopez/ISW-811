@@ -165,7 +165,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         //ConsoleTVs\Charts\ChartsServiceProvider::class,
-
+        LaravelQRCode\Providers\QRCodeServiceProvider::class,
 
     ],
 
@@ -219,6 +219,7 @@ return [
         //personales
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'QRCode' => LaravelQRCode\Facades\QRCode::class,
 
     ],
 

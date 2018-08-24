@@ -19,6 +19,12 @@
       <p>Canjear mis puntos</p>
     </a>
   </li>
+  <li class="nav-item">
+    <a href="{{route('client.coupon.getActiveCoupons')}}" class="nav-link">
+      <i class="nc-icon nc-paper-2"></i>
+      <p>Ver cupones activos</p>
+    </a>
+  </li>
 </ul>
 </div>
 </div>

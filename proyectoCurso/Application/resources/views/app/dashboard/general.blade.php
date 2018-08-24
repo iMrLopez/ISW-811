@@ -13,8 +13,8 @@
           </div>
           <div class="col-7">
             <div class="numbers">
-              <p class="card-category">Tipos de materiales</p>
-              <h4 class="card-title">150GB</h4>
+              <p class="card-category">Cantidad de materiales</p>
+              <h4 class="card-title">{{$data['Material_master']}}</h4>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
           <div class="col-7">
             <div class="numbers">
               <p class="card-category">Productos Registrados</p>
-              <h4 class="card-title">$ 1,345</h4>
+              <h4 class="card-title">{{$data['Product_master']}}</h4>
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@
       <div class="card-footer ">
         <hr>
         <div class="stats">
-          <i class="fa fa-calendar-o"></i> Hace 5 segundos
+          <i class="fa fa-calendar-o"></i> En tiempo real
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
           <div class="col-7">
             <div class="numbers">
               <p class="card-category">Centros de canje disponibles</p>
-              <h4 class="card-title">23</h4>
+              <h4 class="card-title">{{$data['collectionCenter_master']}}</h4>
             </div>
           </div>
         </div>
@@ -88,8 +88,8 @@
           </div>
           <div class="col-7">
             <div class="numbers">
-              <p class="card-category">Litros de oxigeno salvados</p>
-              <h4 class="card-title">+45K</h4>
+              <p class="card-category">Usuarios registrados</p>
+              <h4 class="card-title">{{$data['User']}}</h4>
             </div>
           </div>
         </div>
