@@ -33,6 +33,13 @@ class UsersTableSeeder extends Seeder
         'collectionCenter_id'=>'2',
       ]);
       DB::table('users')->insert([
+        'username' => "cajero1",
+        'password' => bcrypt("cajero1"),
+        'name' => "cajero1",
+        'status' => "Activo",
+        'role' => "Cashier",
+      ]);
+      DB::table('users')->insert([
         'username' => "116230677",
         'password' => bcrypt("116230677"),
         'email'=>'marny.lopez@outlook.com',

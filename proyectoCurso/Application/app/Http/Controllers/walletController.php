@@ -95,9 +95,27 @@ class walletController extends Controller
   }
 
   //Get all active coupons for this user (get)
-  public function getActiveCoupons(){ //TODO generate a QR
+  public function getActiveCoupons(){
     $data = wallet_detail::where([['status','Activo'],['transactionType','Debito'],['walletId',Auth::user()->username]])->get();
     return view('app.CRUD.walletDetail.activeCoupons',['data'=>$data]);
+  }
+
+  //API -> Used to get a JSON of the client
+  public function getCoupon($json){
+    $obj = json_decode($json, true);
+    return response()->json(wallet_detail::where([['id',$obj['coupon']['id']],['walletId',$obj['client']],['status','Activo']])->get());
+  }
+
+  //doRedeemCoupon
+  public function redeemCoupon (Request $request){
+    $coupon = wallet_detail::find($request->couponId);
+    $coupon->status = "Inactivo";
+    if($coupon->save()){
+      $msg = array('type'=>'success','title'=>'Proceso realizado','contents'=>'Se ha marcado el cupon como canjeado');
+    }else{
+      dd($coupon);
+    }
+    return redirect()->route('app.appEco')->with('msg', $msg);
   }
 
 

@@ -71,7 +71,8 @@ Route::group(['prefix'=>'appEco'],function(){
     //CRUD relacionado a los CanjeoMateriales
     Route::group(['prefix'=>'CanjeoCupones'],function(){
       Route::get('',function () {return view('app.CRUD.walletDetail.redeemCoupon');})->name('CRUD.CanjeoCupones.startRedeem');
-      Route::post('','walletController@doConvertMaterials')->name('CRUD.CanjeoCupones.doRedeem');
+      Route::get('/{json?}','walletController@getCoupon')->name('CRUD.CanjeoCupones.getCouponData');
+      Route::post('/redeem','walletController@redeemCoupon')->name('CRUD.CanjeoCupones.doRedeem');
     });
 
   });

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
       $table->string('address')->default('NULL');
       $table->string('telephone')->default('NULL');
       $table->enum('status',['Activo','Inactivo'])->default('Activo');
-      $table->enum('role',['Admin','Collection','Client'])->default('Client');
+      $table->enum('role',['Admin','Collection','Client','Cashier'])->default('Client');
       $table->unsignedInteger('collectionCenter_id')->references('id')->on('collectionCenter_master')->default('0');
       $table->rememberToken();
       $table->timestamps();

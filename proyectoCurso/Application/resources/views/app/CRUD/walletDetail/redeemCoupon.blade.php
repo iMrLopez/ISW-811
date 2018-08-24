@@ -6,10 +6,32 @@
 
 <script type="text/javascript">
 
+function showUserData(data){ //Result for the ajax call
+  if(data.length == 0){
+    swal({
+      type: 'error',
+      title: 'Cupon no encontrado',
+      text: 'Por favor intenta de nuevo',
+      footer: '<b>Marny A. Lopez Lopez - 1 1623 0677</b>'
+    });
+    document.getElementById('coupon').value ="";
+  }else{
+    document.getElementById('transactionAmmount').innerText = data[0].transactionAmmount;
+    document.getElementById('transactionDescription').innerText = data[0].transactionDescription;
+    document.getElementById('couponId').value = data[0].id;
+    document.getElementById('btnSubmit').disabled = false ;
+    console.log(data);
+  }
+}
+
 function getCouponInfo(){
   var field_coupon = document.getElementById('coupon');
-  //TODO get the info of this coupon
+  var requesturl = "{{route('CRUD.CanjeoCupones.getCouponData')}}/" + field_coupon.value;
+  $.ajax({url: requesturl, success: function(result){
+        showUserData(result);
+  }});
 }
+
 
 
 </script>
@@ -46,14 +68,15 @@ function getCouponInfo(){
               <div class="row">
                 <div class="col-md-12 pr-12">
                   <!-- TODO aqui va la informacion del cupon -->
+                  Monto del cupon:<p id="transactionAmmount"></p>
+                  Descripcion del cupon:<p id="transactionDescription"></p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  {!! Form::open(['route' => 'security.doChangePassword','class'=>'form']) !!}
-                    {!! Form::hidden('id',Auth::user()->id) !!}
-                    {!! Form::hidden('accion','Password') !!}
-                    {!! Form::submit('Realizar el canje',['class'=>'btn btn-warning btn-wd','disabled'=>'true']) !!}
+                  {!! Form::open(['route' => 'CRUD.CanjeoCupones.doRedeem','class'=>'form']) !!}
+                    {!! Form::hidden('couponId',"",['id'=>'couponId']) !!}
+                    {!! Form::submit('Realizar el canje',['class'=>'btn btn-warning btn-wd','disabled'=>'true','id'=>'btnSubmit']) !!}
                   {!! Form::close() !!}
                 </div>
               </div>
@@ -75,27 +98,18 @@ function getCouponInfo(){
             <h5 class="title"><p id="clientName"></p></h5>
           </a>
           <p class="description">
-            michael24
+            Proceso de canje de cupones
           </p>
         </div>
         <p class="description text-center">
-          "Lamborghini Mercy
-          <br> Your chick she so thirsty
-          <br> I'm in that two seat Lambo"
+          <ul>
+            <li>Escanea el cupon</li>
+            <li>Verifica la informacion y entrega el producto</li>
+            <li>Realiza el canje del cupon en el sistema con el boton</li>
+          </ul>
         </p>
       </div>
       <hr>
-      <div class="button-container mr-auto ml-auto">
-        <button href="#" class="btn btn-simple btn-link btn-icon">
-          <i class="fa fa-facebook-square"></i>
-        </button>
-        <button href="#" class="btn btn-simple btn-link btn-icon">
-          <i class="fa fa-twitter"></i>
-        </button>
-        <button href="#" class="btn btn-simple btn-link btn-icon">
-          <i class="fa fa-google-plus-square"></i>
-        </button>
-      </div>
     </div>
   </div>
 
