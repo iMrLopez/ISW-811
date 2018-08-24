@@ -20,6 +20,7 @@ class LoginController extends Controller
 
   use AuthenticatesUsers;
 
+  //TODO user_status is not doing anything
   /**
   * Where to redirect users after login.
   *

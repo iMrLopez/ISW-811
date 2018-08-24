@@ -23,9 +23,9 @@
         @if(Auth::user()->role == 'Client')
         <p class="description text-center">
           {{Auth::user()->email}}
-          <br> {{Auth::user()->name->address}}
-          <br> {{Auth::user()->name->telephone}}
-          <br> {{Auth::user()->name->role}}
+          <br> {{Auth::user()->address}}
+          <br> {{Auth::user()->telephone}}
+          <br> {{Auth::user()->role}}
         </p>
         @endif
       </div>

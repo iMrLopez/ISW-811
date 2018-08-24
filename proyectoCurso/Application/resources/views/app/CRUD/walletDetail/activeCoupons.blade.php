@@ -44,7 +44,7 @@ function PrintElem(elem) //Tnis functions is used to print the coupon for the us
           <div class="col-md-12" style="align-items: center">
             <div id="qrcode{{$actual->id}}"></div>
             <script type="text/javascript">
-            new QRCode(document.getElementById("qrcode{{$actual->id}}"), "{'client':'{{$actual->walletId}}','couponId':{'id':'{{$actual->id}}','description':'{{$actual->transactionDescription}}'}}");
+            new QRCode(document.getElementById("qrcode{{$actual->id}}"), '{"client":"{{$actual->walletId}}","couponId":{"id":"{{$actual->id}}","description":"{{$actual->transactionDescription}}"}}');
             $("#qrcode{{$actual->id}} > img").css({"margin":"auto"});
             </script>
           </div>

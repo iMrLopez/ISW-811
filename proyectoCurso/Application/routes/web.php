@@ -62,10 +62,16 @@ Route::group(['prefix'=>'appEco'],function(){
       Route::get('/getUserWallet/{username?}','UserController@getUserWithWallet')->name('CRUD.GestionDeUsuarios.getUserWithWallet');
     });
 
-    //CRUD relacionado a los usuaiors
+    //CRUD relacionado a los CanjeoMateriales
     Route::group(['prefix'=>'CanjeoMateriales'],function(){
       Route::get('/','walletController@startRedeemMaterials')->name('CRUD.CanjeoMateriales.startRedeem');
       Route::post('/','walletController@doConvertMaterials')->name('CRUD.CanjeoMateriales.doRedeem');
+    });
+
+    //CRUD relacionado a los CanjeoMateriales
+    Route::group(['prefix'=>'CanjeoCupones'],function(){
+      Route::get('',function () {return view('app.CRUD.walletDetail.redeemCoupon');})->name('CRUD.CanjeoCupones.startRedeem');
+      Route::post('','walletController@doConvertMaterials')->name('CRUD.CanjeoCupones.doRedeem');
     });
 
   });
@@ -83,17 +89,6 @@ Route::group(['prefix'=>'appEco'],function(){
     });
 
   });
-
-
-  /*Security (Login / Logout / ChangePassword)
-  Route::get('/login', function () {return view('app/security/login');})->name('security.startLogin');
-  Route::post('/login','Security@doLogin')->name('security.doLogin');
-  Route::get('/logout','Security@doLogout')->name('security.doLogout');
-  Route::get('/register', function () {return view('app/security/register');})->name('security.startRegister');
-  Route::post('/register','Security@doRegister')->name('security.doRegister');*/
-
-
-
 
 
 
